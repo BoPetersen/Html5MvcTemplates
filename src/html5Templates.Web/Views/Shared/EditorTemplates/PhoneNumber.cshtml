@@ -1,1 +1,7 @@
-﻿@Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = "text-box single-line", type = "tel", placeholder = ViewData.ModelMetadata.DisplayName })
+@{ Dictionary<string, object> values = new Dictionary<string, object>() { { "class", "text-box single-line" }, { "type", "tel" } };
+   values.Add("placeholder", ViewData.ModelMetadata.Watermark);
+   if (ViewData.ModelMetadata.IsRequired) { values.Add("required", "true"); }
+   ModelClientValidationRule rule = ModelValidatorProviders.Providers.GetValidators(ViewData.ModelMetadata, ViewContext).SelectMany(x => x.GetClientValidationRules()).FirstOrDefault(x => x.ValidationType.ToLower().Equals("length"));
+   if (rule != null && rule.ValidationParameters.ContainsKey("max")) { values.Add("maxlength", rule.ValidationParameters["max"]); }
+}
+@Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, values)))
