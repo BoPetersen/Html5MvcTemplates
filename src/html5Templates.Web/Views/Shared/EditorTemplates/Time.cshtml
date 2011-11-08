@@ -1,4 +1,4 @@
-@{ Dictionary<string, object> values = new Dictionary<string, object>() { { "class", "text-box single-line" }, { "time", ""url" } };
+@{ Dictionary<string, object> values = new Dictionary<string, object>() { { "class", "text-box single-line" }, { "type", "time" } };
    values.Add("placeholder", ViewData.ModelMetadata.Watermark);
    if (ViewData.ModelMetadata.IsRequired) { values.Add("required", "true"); }
    ModelClientValidationRule rule = ModelValidatorProviders.Providers.GetValidators(ViewData.ModelMetadata, ViewContext).SelectMany(x => x.GetClientValidationRules()).FirstOrDefault(x => x.ValidationType.ToLower().Equals("length"));
